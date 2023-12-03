@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Stop",
+    "image": "assets/signals/stop_sign.jpg",
+    "meaning": "Esta señal indica que debes detenerte completamente. Debes detener tu vehículo por completo en el lugar indicado por la señal y ceder el paso a otros vehículos antes de reanudar la marcha."
+  },
+  {
+    "name": "Carril para Bicicletas",
+    "image": "assets/signals/bicycle_lane.jpg",
+    "meaning": "Carril para bicicletas. Indica un carril exclusivo para bicicletas. Respeta este carril y evita circular en él."
+  },
+  {
+    "name": "Límite de Velocidad 50",
+    "image": "assets/signals/speed_limit_50.jpg",
+    "meaning": "El límite de velocidad es de 50 km/h. Esta señal indica la velocidad máxima permitida en la zona en la que te encuentras. Debes ajustar tu velocidad para no exceder el límite establecido."
+  },
+  {
+    "name": "Prohibido el Paso",
+    "image": "assets/signals/no_entry.jpg",
+    "meaning": "Está prohibido el paso. Esta señal prohíbe la entrada a la zona o vía indicada. No debes entrar en la zona marcada por la señal bajo ninguna circunstancia."
+  },
+  {
+    "name": "Rotonda",
+    "image": "assets/signals/roundabout.jpg",
+    "meaning": "Indica la proximidad de una rotonda. Esta señal advierte que te estás acercando a una rotonda. Deberás seguir las reglas de circulación específicas para las rotondas al aproximarte y circular por ella."
+  },
+  {
+    "name": "Límite de Velocidad 30",
+    "image": "assets/signals/speed_limit_30.jpg",
+    "meaning": "El límite de velocidad es de 30 km/h. Debes ajustar tu velocidad para no exceder el límite establecido."
+  },
+  {
+    "name": "Zona Escolar",
+    "image": "assets/signals/school_zone.jpg",
+    "meaning": "Indica una zona escolar. Debes reducir tu velocidad y estar atento a los niños que puedan cruzar la carretera."
+  },
+  {
+    "name": "Ceda el Paso",
+    "image": "assets/signals/yield.jpg",
+    "meaning": "Debes ceder el paso a otros vehículos. Si te aproximas a un cruce o intersección, cede el paso a los vehículos que se aproximan desde otras direcciones."
+  },
+  {
+    "name": "Sentido Único",
+    "image": "assets/signals/one_way.jpg",
+    "meaning": "Indica una dirección permitida. Debes seguir en la dirección indicada por la flecha."
+  },
+  {
+    "name": "Prohibido el Giro en U",
+    "image": "assets/signals/no_u_turn.jpg",
+    "meaning": "Está prohibido hacer un giro en U. No debes dar la vuelta en la zona indicada por la señal."
+  },
+  {
+    "name": "Peligro: Cruce de animales",
+    "image": "assets/signals/animal_crossing.jpg",
+    "meaning": "Indica un cruce de animales. Debes estar atento a los animales que puedan cruzar la carretera."
+  },
+  {
+    "name": "Peligro: Carretera en obras",
+    "image": "assets/signals/caution_road_work_ahead.jpg",
+    "meaning": "Indica una carretera en obras. Debes reducir tu velocidad y estar atento a los trabajadores y vehículos que puedan estar en la carretera."
+  },
+  {
+    "name":"Paso de Peatones",
+    "image": "assets/signals/crosswalk.jpg",
+    "meaning": "Indica un paso de peatones. Debes ceder el paso a los peatones que se aproximen a cruzar la carretera."
+  },
+  {
+    "name": "Hospital",
+    "image": "assets/signals/hospital.jpg",
+    "meaning": "Indica un hospital. Debes reducir tu velocidad y estar atento a los peatones que puedan cruzar la carretera."
+  }
+]
