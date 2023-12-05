@@ -65,3 +65,28 @@ class Prediction {
     );
   }
 }
+
+
+
+
+// Clase para almacenar los valores de la predicción
+class PredictionValues {
+  final double x;
+  final double y;
+  final double confidence;
+  final String className;
+  final double width;
+  final double height;
+  final int number;
+
+  PredictionValues({
+    required this.x,
+    required this.y,
+    required this.confidence,
+    required this.className,
+    required this.width,
+    required this.height,
+    required this.number,
+  });
+}
+

@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage> {
             child: isLoading
                 ? const CircularProgressIndicator()
                 : const Text(
-                    "Ver detatlles",
+                    "Ver detalles",
                     style: TextStyle(
                       color: Colors.white,
                     ),
