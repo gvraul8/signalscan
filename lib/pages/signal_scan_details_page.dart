@@ -7,13 +7,50 @@ class ScanDetailsPage extends StatelessWidget {
   final File imageFile;
   final ApiResponse apiResponse;
 
-  const ScanDetailsPage(this.imageFile, this.apiResponse, {Key? key}) : super(key: key);
+  const ScanDetailsPage(this.imageFile, this.apiResponse, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Prediction prediction = apiResponse.predictions.isNotEmpty
-        ? apiResponse.predictions[0]
-        : Prediction(x: 0, y: 0, width: 0, height: 0, confidence: 0, classLabel: "", classId: 0);
+    // Verificar si la lista de predicciones está vacía
+    if (apiResponse.predictions.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 165, 36, 36),
+          title: const Text('Detalles del Escaneo'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Mostrar la imagen ajustada
+              Container(
+                margin: const EdgeInsets.only(top: 10),
+                width: MediaQuery.of(context).size.width * 0.85,
+                height: MediaQuery.of(context).size.width *
+                    0.85, // Mantener una relación de aspecto cuadrada
+                child: Image.file(
+                  imageFile,
+                  fit: BoxFit.contain,
+                ),
+              ),
+              // Mostrar el mensaje de error
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+
+                child: const Text(
+                  'No se han encontrado señales de tráfico en la imagen proporcionada.',
+                  style: TextStyle(fontSize: 16),
+                  textAlign: TextAlign.center, // Alinea el texto al centro
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    Prediction prediction = apiResponse.predictions[0];
 
     double x = prediction.x;
     double y = prediction.y;
@@ -28,7 +65,8 @@ class ScanDetailsPage extends StatelessWidget {
     double desiredImageWidth = MediaQuery.of(context).size.width * 0.85;
 
     // Calcular la altura para mantener la relación de aspecto
-    double desiredImageHeight = originalImageHeight * (desiredImageWidth / originalImageWidth);
+    double desiredImageHeight =
+        originalImageHeight * (desiredImageWidth / originalImageWidth);
 
     // Factor de escala para ajustar el cuadrado al tamaño de la imagen
     double scale = desiredImageWidth / originalImageWidth;
@@ -48,35 +86,33 @@ class ScanDetailsPage extends StatelessWidget {
       cuadradoColor = Colors.yellow;
     }
 
-    // Adjust the position of the text based on the scaling factor
+    // Ajusta la posición del texto en función del factor de escala
     double scaledTextTopMargin = 10.0 * scale;
     double scaledTextBottomMargin = 10.0 * scale;
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 165, 36, 36),
         title: const Text('Detalles del Escaneo'),
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            // Muestra la imagen ajustada
+            // Mostrar la imagen ajustada
             Container(
-              margin: EdgeInsets.only(top: scaledTextTopMargin),
+              margin: EdgeInsets.only(top: scaledTextTopMargin + 20),
               width: desiredImageWidth,
               height: desiredImageHeight,
               child: Stack(
+                alignment: Alignment.topCenter, // Alinea la imagen en la parte superior
                 children: [
                   // Coloca la imagen utilizando Image.file
-                  Positioned(
-                    left: 0,
-                    top: 0,
-                    child: Image.file(
-                      imageFile,
-                      height: desiredImageHeight,
-                      width: desiredImageWidth,
-                      fit: BoxFit.contain,
-                    ),
+                  Image.file(
+                    imageFile,
+                    height: desiredImageHeight,
+                    width: desiredImageWidth,
+                    fit: BoxFit.contain,
                   ),
 
                   // Coloca el cuadrado encima de la imagen
@@ -98,10 +134,12 @@ class ScanDetailsPage extends StatelessWidget {
               ),
             ),
 
-            // Muestra el nombre de la clase y el porcentaje de confianza
+            // Mostrar el nombre de la clase y el porcentaje de confianza
             Container(
-              margin: EdgeInsets.only(top: scaledTextTopMargin, bottom: scaledTextBottomMargin),
+              margin: EdgeInsets.only(
+                  top: scaledTextTopMargin + 10, bottom: scaledTextBottomMargin),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text('Nombre de la clase: $className'),
                   Text('Confianza: ${(confidence * 100).toStringAsFixed(2)}%'),

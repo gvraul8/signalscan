@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:signalscan/models/api_response_model.dart';
@@ -16,6 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   File? file;
   ImagePicker image = ImagePicker();
+  bool isLoading = false; // Nuevo estado para controlar la carga
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,6 @@ class _HomePageState extends State<HomePage> {
               width: 170,
             ),
           ),
-          // Buttons in the same row
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -56,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              const SizedBox(width: 16), // Agrega espacio entre los botones
+              const SizedBox(width: 16),
               MaterialButton(
                 onPressed: () {
                   getCam();
@@ -74,48 +73,53 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          // Selected image
           Container(
-            width: file == null
-                ? 220.0 // Tamaño original deseado cuando no hay imagen seleccionada
-                : MediaQuery.of(context).size.width * 0.8, // Multiplicado por 0.8 para dejar un margen
-            height: file == null ? 220.0 : null, // Establecer la altura solo cuando no hay imagen seleccionada
-            color: file == null ? Theme.of(context).scaffoldBackgroundColor : Colors.transparent,
+            width:
+                file == null ? 220.0 : MediaQuery.of(context).size.width * 0.8,
+            height: file == null ? 220.0 : null,
+            color: file == null
+                ? const Color.fromARGB(66, 189, 188, 188)
+                : Colors.transparent,
             child: file == null
                 ? const Icon(
                     Icons.image,
                     size: 50,
+                    color: Colors.white,
                   )
                 : AspectRatio(
-                    aspectRatio: file!.readAsBytesSync().lengthInBytes.toDouble() /
-                        file!.readAsBytesSync().lengthInBytes.toDouble(),
+                    aspectRatio:
+                        file!.readAsBytesSync().lengthInBytes.toDouble() /
+                            file!.readAsBytesSync().lengthInBytes.toDouble(),
                     child: Image.file(
                       file!,
                       fit: BoxFit.contain,
                     ),
                   ),
           ),
-          // Button to view details
           MaterialButton(
             onPressed: () async {
               if (file != null) {
                 try {
-                  // Enviar la imagen para la detección y obtener la respuesta de la API
+                  setState(() {
+                    isLoading = true;
+                  });
+
                   ApiResponse apiResponse =
                       await ApiService.sendImageForDetection(file!);
 
-                  // Crear la página de detalles con la respuesta de la API
+                  // ignore: use_build_context_synchronously
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>
-                          ScanDetailsPage(file!, apiResponse),
+                      builder: (context) => ScanDetailsPage(file!, apiResponse),
                     ),
                   );
                 } catch (e) {
-                  // Manejar errores, por ejemplo, mostrar un diálogo de error
-                  print('Error: $e');
-                  // Aquí puedes agregar lógica adicional según tus necesidades
+                  throw 'Error: $e';
+                } finally {
+                  setState(() {
+                    isLoading = false;
+                  });
                 }
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -130,12 +134,14 @@ class _HomePageState extends State<HomePage> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            child: const Text(
-              "View Details",
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
+            child: isLoading
+                ? const CircularProgressIndicator()
+                : const Text(
+                    "View Details",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
           ),
         ],
       ),
