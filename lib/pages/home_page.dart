@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: const Text(
-                  "Take from gallery",
+                  "Seleccionar desde galería",
                   style: TextStyle(
                     color: Colors.white,
                   ),
@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: const Text(
-                  "Take from camera",
+                  "Tomar foto",
                   style: TextStyle(
                     color: Colors.white,
                   ),
@@ -74,6 +74,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           Container(
+            margin: const EdgeInsets.all(16),
             width:
                 file == null ? 220.0 : MediaQuery.of(context).size.width * 0.8,
             height: file == null ? 220.0 : null,
@@ -137,7 +138,7 @@ class _HomePageState extends State<HomePage> {
             child: isLoading
                 ? const CircularProgressIndicator()
                 : const Text(
-                    "View Details",
+                    "Ver detatlles",
                     style: TextStyle(
                       color: Colors.white,
                     ),
