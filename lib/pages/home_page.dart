@@ -47,8 +47,7 @@ class _HomePageState extends State<HomePage> {
                 },
                 color: const Color.fromARGB(255, 165, 36, 36),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                      10), // Ajusta el radio según tus necesidades
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: const Text(
                   "Take from gallery",
@@ -64,8 +63,7 @@ class _HomePageState extends State<HomePage> {
                 },
                 color: const Color.fromARGB(255, 165, 36, 36),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                      10), // Ajusta el radio según tus necesidades
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: const Text(
                   "Take from camera",
@@ -78,17 +76,23 @@ class _HomePageState extends State<HomePage> {
           ),
           // Selected image
           Container(
-            height: 240,
-            width: 280,
-            color: Colors.black12,
+            width: file == null
+                ? 220.0 // Tamaño original deseado cuando no hay imagen seleccionada
+                : MediaQuery.of(context).size.width * 0.8, // Multiplicado por 0.8 para dejar un margen
+            height: file == null ? 220.0 : null, // Establecer la altura solo cuando no hay imagen seleccionada
+            color: file == null ? Theme.of(context).scaffoldBackgroundColor : Colors.transparent,
             child: file == null
                 ? const Icon(
                     Icons.image,
                     size: 50,
                   )
-                : Image.file(
-                    file!,
-                    fit: BoxFit.fill,
+                : AspectRatio(
+                    aspectRatio: file!.readAsBytesSync().lengthInBytes.toDouble() /
+                        file!.readAsBytesSync().lengthInBytes.toDouble(),
+                    child: Image.file(
+                      file!,
+                      fit: BoxFit.contain,
+                    ),
                   ),
           ),
           // Button to view details
