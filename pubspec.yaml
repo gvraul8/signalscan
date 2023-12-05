@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  cached_network_image: ^3.2.3
   flutter:
     sdk: flutter
 
@@ -43,6 +44,7 @@ dependencies:
   url_launcher: ^6.1.10
   intl: ^0.18.0
   image_picker: ^0.8.4+3
+
 
 
 dev_dependencies:
@@ -93,6 +95,11 @@ flutter:
     - assets/signals/speed_limit_30.jpg
     - assets/signals/warning_slippery_road.jpg
     - assets/signals/yield.jpg
+
+
+
+
+    - assets/signals/prueba.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
