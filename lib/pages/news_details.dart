@@ -103,13 +103,13 @@ class _NewsDetailsPageState extends State<NewsDetailsPage> {
                   ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color(0xFF020060),
+                         const Color.fromARGB(255, 165, 36, 36),
                       ),
                     ),
                     onPressed: () async {
                       await launchUrlString(widget.article.url);
                     },
-                    child: const Text('Leer más'),
+                    child: const Text('Ver en detalle'),
                   ),
                 ],
               ),
