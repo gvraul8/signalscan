@@ -1,9 +1,12 @@
 # SIGNALSCAN
 
+![GitHub last commit](https://img.shields.io/github/last-commit/gvraul8/signalscan)
+![GitHub top language](https://img.shields.io/github/languages/top/gvraul8/signalscan)
+
 ![image](https://github.com/gvraul8/signalscan/assets/72313586/1a8fbf72-d468-41c3-ad78-6f54ecb97315)
 
 
-**PARA VER LA DOCUMENTACION COMPLETA, LEER MEMORIA** 
+**PARA VER LA DOCUMENTACION COMPLETA, LEER [MEMORIA](https://github.com/gvraul8/signalscan/blob/master/GonzalezVelazquez_FernadezDelMoralGarciaConsuegra_memoria.pdf)** 
 
 
 
